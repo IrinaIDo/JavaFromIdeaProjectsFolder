@@ -1,1 +1,1 @@
-# JavaForBeginners
+# JavaFromIdeaProjectsFolder
