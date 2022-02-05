@@ -3,7 +3,6 @@ package oop_challenge;
 import org.jetbrains.annotations.NotNull;
 
 import java.text.DecimalFormat;
-import java.util.Arrays;
 
 public class Hamburger {
 
@@ -62,7 +61,7 @@ public class Hamburger {
     }
 
     private boolean validateBurgerAdditions(){
-        return (this.burgerAdditionName.length > this.burgerAdditionPrice.length);
+        return (this.burgerAdditionName.length <= this.numberOfAdditionsAllowed);
     }
 
     private boolean validateBurgerAdditionName(String burgerAdditionNameToBeValidated){
@@ -106,12 +105,19 @@ public class Hamburger {
         }
     }
 
-    public void addOptionsToBurger(String[] burgerAdditionName, Double[] burgerAdditionPrice){
+    public void addOptionsToBurger(String[] burgerAdditionName, Double[] burgerAdditionPrice) throws IncorrectFileNameException {
         setBurgerAdditionName(burgerAdditionName);
         setBurgerAdditionPrice(burgerAdditionPrice);
         if (!validateBurgerAdditions()){
-            System.out.println("Only 4 additional options are accepted to be added. The options that have been " +
-                    "chosen are: " + Arrays.toString(burgerAdditionName));
+            String error_message = String.format(
+                    "More than %d additional options are chosen. The order CANNOT be validated.",
+                    this.numberOfAdditionsAllowed);
+            throw new IncorrectFileNameException(error_message);
+/*
+            System.out.println("Only 4 additional 1options are accepted to be added. The options that have been " +
+                    "chosen are: " + Arrays.toString(burgerAdditionName) +
+                    ". Please see below if all of them have been successfully validated or not.");
+*/
         }
     }
 
