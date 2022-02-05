@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IncorrectFileNameException {
 
         /*
         Standard data to be used in order to test our implementation.
@@ -69,7 +69,7 @@ public class Main {
 
     public static void orderBurgerFromHamburgerClass(
             String @NotNull [] validBasicBurgerAdditions, Double @NotNull [] validBasicBurgerAdditionsPrice,
-            Double @NotNull [] basicBurgerAdditionsInvalidPrice, String @NotNull [] invalidBasicBurgerAdditions){
+            Double @NotNull [] basicBurgerAdditionsInvalidPrice, String @NotNull [] invalidBasicBurgerAdditions) throws IncorrectFileNameException {
         Hamburger basicBurger = new Hamburger();
         orderBasicBurger(basicBurger, validBasicBurgerAdditions, validBasicBurgerAdditionsPrice);
         orderBasicBurger(basicBurger, validBasicBurgerAdditions, basicBurgerAdditionsInvalidPrice);
@@ -77,14 +77,21 @@ public class Main {
         orderBasicBurger(basicBurger, invalidBasicBurgerAdditions, basicBurgerAdditionsInvalidPrice);
     }
 
-    private static void orderBasicBurger(@NotNull Hamburger hamburger, String[] burgerAdditions, Double[] burgerAdditionsPrices){
+    private static void orderBasicBurger(
+            @NotNull Hamburger hamburger, String[] burgerAdditions, Double[] burgerAdditionsPrices) throws IncorrectFileNameException {
+/*
+        Force the exception to be thrown.
+        String[] resultingNameArray = addTwoMoreAdditions(burgerAdditions);
+        Double[] resultingPriceArray = addTwoMoreAdditionsPrices(burgerAdditionsPrices);
+        hamburger.addOptionsToBurger(resultingNameArray, resultingPriceArray);
+*/
         hamburger.addOptionsToBurger(burgerAdditions, burgerAdditionsPrices);
         hamburger.getBurgerPrice();
     }
 
     public static void orderBurgerFromHealthyBurgerClass(
             String @NotNull [] validBasicBurgerAdditions, Double @NotNull [] validBasicBurgerAdditionsPrice,
-            Double @NotNull [] basicBurgerAdditionsInvalidPrice, String @NotNull [] invalidBasicBurgerAdditions){
+            Double @NotNull [] basicBurgerAdditionsInvalidPrice, String @NotNull [] invalidBasicBurgerAdditions) throws IncorrectFileNameException {
         HealthyBurger healthyBurger = new HealthyBurger();
         orderHealthyBurger(healthyBurger, validBasicBurgerAdditions, validBasicBurgerAdditionsPrice);
         orderHealthyBurger(healthyBurger, validBasicBurgerAdditions, basicBurgerAdditionsInvalidPrice);
@@ -93,7 +100,7 @@ public class Main {
     }
 
     private static void orderHealthyBurger(
-            HealthyBurger healthyBurger, String[] burgerAdditions, Double[] burgerAdditionsPrices){
+            HealthyBurger healthyBurger, String[] burgerAdditions, Double[] burgerAdditionsPrices) throws IncorrectFileNameException {
         String[] resultingNameArray = addTwoMoreAdditions(burgerAdditions);
         Double[] resultingPriceArray = addTwoMoreAdditionsPrices(burgerAdditionsPrices);
         healthyBurger.addOptionsToBurger(resultingNameArray, resultingPriceArray);
@@ -130,7 +137,7 @@ public class Main {
 
     public static void orderBurgerFromDeluxeBurgerClass(
             String @NotNull [] validBasicBurgerAdditions, Double @NotNull [] validBasicBurgerAdditionsPrice,
-            Double @NotNull [] basicBurgerAdditionsInvalidPrice, String @NotNull [] invalidBasicBurgerAdditions){
+            Double @NotNull [] basicBurgerAdditionsInvalidPrice, String @NotNull [] invalidBasicBurgerAdditions) throws IncorrectFileNameException {
         DeluxeBurger deluxeBurger = new DeluxeBurger();
         deluxeBurger.deluxeBurgerOptionsPrice = new Double[]{1.7, 2.1};
         orderDeluxeBurger(deluxeBurger, validBasicBurgerAdditions, validBasicBurgerAdditionsPrice);
@@ -140,7 +147,7 @@ public class Main {
     }
 
     private static void orderDeluxeBurger(
-            DeluxeBurger deluxeBurger, String[] burgerAdditions, Double[] burgerAdditionsPrices){
+            DeluxeBurger deluxeBurger, String[] burgerAdditions, Double[] burgerAdditionsPrices) throws IncorrectFileNameException {
         deluxeBurger.addOptionsToBurger(burgerAdditions, burgerAdditionsPrices);
         Boolean[] userOptions = {true, true};
         deluxeBurger.prepareDeluxeBurger(userOptions);
