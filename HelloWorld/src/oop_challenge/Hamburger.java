@@ -2,9 +2,12 @@ package oop_challenge;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 
 public class Hamburger {
+
+    DecimalFormat df = new DecimalFormat("###.##");
 
     private final String burgerName;
     private final String breadRollType;
@@ -121,7 +124,8 @@ public class Hamburger {
             burgerFinalPrice += additionIsValid ? this.burgerAdditionPrice[i] : 0d;
             System.out.println("Subtotal: " + burgerFinalPrice + " for " + this.burgerAdditionPrice[i]);
         }
-        System.out.println("The burger: " + this.burgerName + " costs: " + burgerFinalPrice + " RON.");
+        System.out.println("The burger: " + this.burgerName + " costs: " +
+                df.format(burgerFinalPrice) + " RON.");
 //        System.out.println("No of allowed additional: " + this.numberOfAdditionsAllowed);
         return burgerFinalPrice;
     }
