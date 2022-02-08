@@ -1,5 +1,7 @@
 package interface_inner_abstract_class;
 
+import org.jetbrains.annotations.NotNull;
+
 public class MainChallenge {
 
     public static void main(String[] args) {
@@ -38,7 +40,7 @@ public class MainChallenge {
 
          You will also need a method to remove an item from the tree.
 
-         Hint: If you are creating classes with names such as List, LinkedList, Node etc, make sure that
+         Hint: If you are creating classes with names such as List, LinkedList, Node etc., make sure that
          you create your classes before referring to them. In previous videos we have often referred to
          classes that we create later, but if you use names that IntelliJ recognises as Java classes (such
          as LinkedList) then it will create imports for them and possibly cause you problems later.
@@ -69,26 +71,27 @@ public class MainChallenge {
 
 
         tree.traverse(tree.getRoot());
-        tree.removeItem(new Node("3"));
-        tree.traverse(tree.getRoot());
+        treeRemoveTraverse(tree, "3", true);
 
-        tree.removeItem(new Node("5"));
-        tree.traverse(tree.getRoot());
+        treeRemoveTraverse(tree, "5", true);
 
-        tree.removeItem(new Node("0"));
-        tree.removeItem(new Node("4"));
-        tree.removeItem(new Node("2"));
-        tree.traverse(tree.getRoot());
+        treeRemoveTraverse(tree, "0", false);
+        treeRemoveTraverse(tree, "4", false);
+        treeRemoveTraverse(tree, "2", true);
 
-        tree.removeItem(new Node("9"));
-        tree.traverse(tree.getRoot());
-        tree.removeItem(new Node("8"));
-        tree.traverse(tree.getRoot());
-        tree.removeItem(new Node("6"));
-        tree.traverse(tree.getRoot());
+        treeRemoveTraverse(tree, "9", true);
+        treeRemoveTraverse(tree, "8", true);
+        treeRemoveTraverse(tree, "6", true);
         tree.removeItem(tree.getRoot());
         tree.traverse(tree.getRoot());
         tree.removeItem(tree.getRoot());
         tree.traverse(tree.getRoot());
+    }
+
+    private static void treeRemoveTraverse(@NotNull SearchTree searchtree, String nodeToRemove, boolean traverseOption){
+        searchtree.removeItem(new Node(nodeToRemove));
+        if (traverseOption){
+            searchtree.traverse(searchtree.getRoot());
+        }
     }
 }
